@@ -2,4 +2,8 @@
     <string name="app_name">Memory Game</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="recently">Recently</string>
+    <string name="all_games">All Games</string>
+    <string name="create">Create</string>
+    <string name="memory_game">Memory Game</string>
 </resources>

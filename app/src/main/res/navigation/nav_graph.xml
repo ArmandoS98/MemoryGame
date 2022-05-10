@@ -3,35 +3,50 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph.xml"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/nav_recently">
 
     <fragment
-        android:id="@+id/homeFragment"
+        android:id="@+id/nav_recently"
         android:name="com.techun.memorygame.view.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_homeFragment_to_memoryFragment"
-            app:destination="@id/memoryFragment"
+            android:id="@+id/action_homeFragment_to_nav_game"
+            app:destination="@id/nav_game" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/nav_create"
+        android:name="com.techun.memorygame.CreateFragment"
+        android:label="Create"
+        tools:layout="@layout/fragment_create">
+        <action
+            android:id="@+id/action_nav_create_to_nav_game"
+            app:destination="@id/nav_game"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
     </fragment>
 
-    <!--
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
-            -->
     <fragment
-        android:id="@+id/memoryFragment"
-        android:name="com.techun.memorygame.view.MemoryFragment"
-        android:label="Memory"
-        tools:layout="@layout/fragment_memory">
+        android:id="@+id/nav_all_games"
+        android:name="com.techun.memorygame.AllGamesFragment"
+        android:label="All Games"
+        tools:layout="@layout/fragment_all_games">
         <action
-            android:id="@+id/action_memoryFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            android:id="@+id/action_nav_all_games_to_nav_game"
+            app:destination="@id/nav_game"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
+
+    <activity
+        android:id="@+id/nav_game"
+        android:name="com.techun.memorygame.view.MemoryActivity"
+        android:label="activity_memory"
+        tools:layout="@layout/activity_memory" />
 </navigation>

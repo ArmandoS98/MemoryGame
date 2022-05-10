@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/nav_recently"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/recently"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/nav_all_games"
+        android:icon="@drawable/ic_sports_esports_black_24dp"
+        android:title="@string/all_games"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/nav_create"
+        android:icon="@drawable/ic_create_black_24dp"
+        android:title="@string/create"
+        app:showAsAction="ifRoom" />
+</menu>

@@ -1,10 +1,11 @@
-package com.techun.memorygame
+package com.techun.memorygame.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.techun.memorygame.R
 import com.techun.memorygame.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

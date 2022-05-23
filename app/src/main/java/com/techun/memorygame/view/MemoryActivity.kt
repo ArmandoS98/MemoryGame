@@ -1,29 +1,44 @@
 package com.techun.memorygame.view
 
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.GridLayoutManager
-import com.techun.memorygame.MemoryItem
 import com.techun.memorygame.R
-import com.techun.memorygame.databinding.ActivityMainBinding
+import com.techun.memorygame.data.utils.extensions.loadByResource
 import com.techun.memorygame.databinding.ActivityMemoryBinding
-import com.techun.memorygame.view.adapters.CardAdapter
 
-class MemoryActivity : AppCompatActivity(), CardAdapter.OnItemSelected {
+
+class MemoryActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityMemoryBinding
-    private lateinit var cards: List<MemoryItem>
-    private lateinit var adapter: CardAdapter
+    private lateinit var information: List<MemoryItem>
+    private lateinit var cards: List<ImageView>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMemoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        recyclerInit()
+        loadCards()
+        binding.imgBackArrow.setOnClickListener(this)
     }
 
-    private fun recyclerInit() {
+    private fun loadCards() {
         cards = listOf(
+            binding.ivc00,
+            binding.ivc01,
+            binding.ivc02,
+            binding.ivc03,
+            binding.ivc10,
+            binding.ivc11,
+            binding.ivc12,
+            binding.ivc13,
+            binding.ivc20,
+            binding.ivc21,
+            binding.ivc22,
+            binding.ivc23
+        )
+        information = listOf(
             MemoryItem(
                 true,
                 "ben 10",
@@ -86,21 +101,19 @@ class MemoryActivity : AppCompatActivity(), CardAdapter.OnItemSelected {
                 "Gravity falls",
                 "https://static.wikia.nocookie.net/doblaje/images/6/60/Gravity_Falls_Poster.jpg/revision/latest?cb=20200703192506&path-prefix=es"
             )
-        )
+        ).shuffled()
 
-        adapter = CardAdapter(cards.shuffled(), this)
-        binding.rvMemory.layoutManager =
-            GridLayoutManager(this, 4, GridLayoutManager.VERTICAL, false)
-        binding.rvMemory.adapter = adapter
+        cards.forEachIndexed { index, card ->
+            card.loadByResource(information[index].urlImagen)
+            card.setOnClickListener {
+                Toast.makeText(this,"Clicked ${information[index].name}",Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
-
-    override fun onClickListener(
-        imageFront: ImageView,
-        imageBack: ImageView,
-        position: String,
-        adapterPosition: Int
-    ) {
-
+    override fun onClick(v: View?) {
+        if (v?.id == R.id.imgBackArrow) {
+            finish()
+        }
     }
 }

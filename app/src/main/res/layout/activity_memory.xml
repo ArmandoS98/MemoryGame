@@ -28,15 +28,142 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvMemory"
+    <TableLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/cards"
         android:layout_marginEnd="@dimen/cards"
         android:layout_marginBottom="@dimen/cards"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+        <!--Row 0-->
+        <TableRow
+            android:layout_marginTop="5dip"
+            android:layout_marginBottom="5dip">
+
+            <ImageView
+                android:id="@+id/ivc00"
+                android:layout_width="@dimen/width_memory"
+                android:layout_height="@dimen/height_memory"
+                android:layout_marginStart="2.5dp"
+                android:layout_marginEnd="2.5dp"
+                android:layout_weight="1"
+                android:src="@drawable/outline_question_mark_black_24dp" />
+
+            <ImageView
+                android:id="@+id/ivc01"
+                android:layout_width="@dimen/width_memory"
+                android:layout_height="@dimen/height_memory"
+                android:layout_marginStart="2.5dp"
+                android:layout_marginEnd="2.5dp"
+                android:layout_weight="1"
+                android:src="@drawable/outline_question_mark_black_24dp" />
+
+            <ImageView
+                android:id="@+id/ivc02"
+                android:layout_width="@dimen/width_memory"
+                android:layout_height="@dimen/height_memory"
+                android:layout_marginStart="2.5dp"
+                android:layout_marginEnd="2.5dp"
+                android:layout_weight="1"
+                android:src="@drawable/outline_question_mark_black_24dp" />
+
+            <ImageView
+                android:id="@+id/ivc03"
+                android:layout_width="@dimen/width_memory"
+                android:layout_height="@dimen/height_memory"
+                android:layout_marginStart="2.5dp"
+                android:layout_marginEnd="2.5dp"
+                android:layout_weight="1"
+                android:src="@drawable/outline_question_mark_black_24dp" />
+
+        </TableRow>
+        <!--Row 1-->
+        <TableRow
+            android:layout_marginTop="5dip"
+            android:layout_marginBottom="5dip">
+
+            <ImageView
+                android:id="@+id/ivc10"
+                android:layout_width="@dimen/width_memory"
+                android:layout_height="@dimen/height_memory"
+                android:layout_marginStart="2.5dp"
+                android:layout_marginEnd="2.5dp"
+                android:layout_weight="1"
+                android:src="@drawable/outline_question_mark_black_24dp" />
+
+            <ImageView
+                android:id="@+id/ivc11"
+                android:layout_width="@dimen/width_memory"
+                android:layout_height="@dimen/height_memory"
+                android:layout_marginStart="2.5dp"
+                android:layout_marginEnd="2.5dp"
+                android:layout_weight="1"
+                android:src="@drawable/outline_question_mark_black_24dp" />
+
+            <ImageView
+                android:id="@+id/ivc12"
+                android:layout_width="@dimen/width_memory"
+                android:layout_height="@dimen/height_memory"
+                android:layout_marginStart="2.5dp"
+                android:layout_marginEnd="2.5dp"
+                android:layout_weight="1"
+                android:src="@drawable/outline_question_mark_black_24dp" />
+
+            <ImageView
+                android:id="@+id/ivc13"
+                android:layout_width="@dimen/width_memory"
+                android:layout_height="@dimen/height_memory"
+                android:layout_marginStart="2.5dp"
+                android:layout_marginEnd="2.5dp"
+                android:layout_weight="1"
+                android:src="@drawable/outline_question_mark_black_24dp" />
+
+        </TableRow>
+        <!--Row 2-->
+        <TableRow
+            android:layout_marginTop="5dip"
+            android:layout_marginBottom="5dip">
+
+            <ImageView
+                android:id="@+id/ivc20"
+                android:layout_width="@dimen/width_memory"
+                android:layout_height="@dimen/height_memory"
+                android:layout_marginStart="2.5dp"
+                android:layout_marginEnd="2.5dp"
+                android:layout_weight="1"
+                android:src="@drawable/outline_question_mark_black_24dp" />
+
+            <ImageView
+                android:id="@+id/ivc21"
+                android:layout_width="@dimen/width_memory"
+                android:layout_height="@dimen/height_memory"
+                android:layout_marginStart="2.5dp"
+                android:layout_marginEnd="2.5dp"
+                android:layout_weight="1"
+                android:src="@drawable/outline_question_mark_black_24dp" />
+
+            <ImageView
+                android:id="@+id/ivc22"
+                android:layout_width="@dimen/width_memory"
+                android:layout_height="@dimen/height_memory"
+                android:layout_marginStart="2.5dp"
+                android:layout_marginEnd="2.5dp"
+                android:layout_weight="1"
+                android:src="@drawable/outline_question_mark_black_24dp" />
+
+            <ImageView
+                android:id="@+id/ivc23"
+                android:layout_width="@dimen/width_memory"
+                android:layout_height="@dimen/height_memory"
+                android:layout_marginStart="2.5dp"
+                android:layout_marginEnd="2.5dp"
+                android:layout_weight="1"
+                android:src="@drawable/outline_question_mark_black_24dp" />
+
+        </TableRow>
+    </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

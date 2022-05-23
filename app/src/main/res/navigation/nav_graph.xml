@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/nav_create"
-        android:name="com.techun.memorygame.CreateFragment"
+        android:name="com.techun.memorygame.view.CreateFragment"
         android:label="Create"
         tools:layout="@layout/fragment_create">
         <action
@@ -32,7 +32,7 @@
 
     <fragment
         android:id="@+id/nav_all_games"
-        android:name="com.techun.memorygame.AllGamesFragment"
+        android:name="com.techun.memorygame.view.AllGamesFragment"
         android:label="All Games"
         tools:layout="@layout/fragment_all_games">
         <action

@@ -7,11 +7,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.techun.memorygame.MemoryItem
 import com.techun.memorygame.R
 import com.techun.memorygame.databinding.FragmentHomeBinding
-import com.techun.memorygame.view.adapters.CardAdapter
 import com.techun.memorygame.view.adapters.GameAdapter
 
 class HomeFragment : Fragment(), GameAdapter.OnItemSelected {
@@ -68,18 +67,11 @@ class HomeFragment : Fragment(), GameAdapter.OnItemSelected {
         )
 
         adapter = GameAdapter(gamesResently.shuffled(), this)
-        binding.rvMemory.layoutManager =
-            GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
+        binding.rvMemory.layoutManager = GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
         binding.rvMemory.adapter = adapter
     }
 
-    override fun onClickListener(
-        imageFront: ImageView,
-        imageBack: ImageView,
-        position: String,
-        adapterPosition: Int
-    ) {
-
+    override fun onClickListener(card: MemoryItem) {
+        findNavController().navigate(R.id.action_homeFragment_to_nav_game)
     }
-
 }

@@ -1,6 +1,7 @@
 # MemoryGame
 
 App #5 del App Monthly Challenge 2022 de MoureDev
+¿Quién no ha jugado alguna vez a las parejas de cartas? Desde bien pequeños hasta alguna noche de fiesta, ¿cierto? Bien, para este reto deberás elegir tu temática favorita y recrear el [famoso juego](https://es.wikipedia.org/wiki/Memoria_(juego)). Sorpréndenos! 😉
 
 ## Implementaciones
 
@@ -13,10 +14,6 @@ App #5 del App Monthly Challenge 2022 de MoureDev
 * Room
 
 ### Requisitos:
-
-¿Quién no ha jugado alguna vez a las parejas de cartas? Desde bien pequeños hasta alguna noche de fiesta, ¿cierto? Bien, para este reto deberás elegir tu temática favorita y recrear el [famoso juego](https://es.wikipedia.org/wiki/Memoria_(juego)). Sorpréndenos! 😉
-
-**¿En qué consiste el reto?**
 
 *Los requisitos del juego son bastante sencillos. En primer lugar, tienes que elegir la temática que quieras, como Pokémon, Star Wars o incluso Peppa Pig.*
 

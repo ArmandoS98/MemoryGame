@@ -2,14 +2,10 @@ package com.techun.memorygame.view.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.techun.memorygame.MemoryItem
-import com.techun.memorygame.databinding.ItemCardBinding
+import com.techun.memorygame.view.MemoryItem
 import com.techun.memorygame.databinding.ItemGameBinding
-import com.techun.memorygame.utils.extensions.loadByResource
-import com.wajahatkarim3.easyflipview.EasyFlipView
-
+import com.techun.memorygame.data.utils.extensions.loadByResource
 
 class GameAdapter(
     private var boardList: List<MemoryItem>,
@@ -40,18 +36,12 @@ class GameAdapter(
             binding.imgPreview.loadByResource(card.urlImagen)
             binding.tvTitleGame.text = card.name
             binding.imgPreview.setOnClickListener {
-
-
+                onItemSelected?.onClickListener(card)
             }
         }
     }
 
     interface OnItemSelected {
-        fun onClickListener(
-            imageFront: ImageView,
-            imageBack: ImageView,
-            position: String,
-            adapterPosition: Int
-        )
+        fun onClickListener(card: MemoryItem)
     }
 }

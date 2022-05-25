@@ -6,4 +6,7 @@
     <string name="all_games">All Games</string>
     <string name="create">Create</string>
     <string name="memory_game">Memory Game</string>
+    <string name="you_have_15_attempts_to_match_all_the_characters">You have 15 attempts to match\nall the Characters</string>
+    <string name="attempts">Attempts</string>
+    <string name="score">0/15</string>
 </resources>

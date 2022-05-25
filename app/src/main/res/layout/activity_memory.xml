@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dim_16sp"
         android:layout_marginTop="@dimen/dim_26sp"
+        android:contentDescription="@string/app_name"
         android:src="@drawable/outline_arrow_back_ios_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,11 +29,62 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+    <TextView
+        android:id="@+id/tvRules"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/prompt"
+        android:text="@string/you_have_15_attempts_to_match_all_the_characters"
+        android:textAlignment="center"
+        android:textSize="@dimen/dim_20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHeader" />
+
+
+    <TextView
+        android:id="@+id/tvTitleAttempts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:fontFamily="@font/prompt_bold"
+        android:text="@string/attempts"
+        android:textSize="@dimen/dim_14sp"
+        app:layout_constraintBottom_toTopOf="@+id/pbAttempts"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvAttempts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="21dp"
+        android:fontFamily="@font/prompt"
+        android:text="@string/score"
+        android:textSize="@dimen/dim_20sp"
+        app:layout_constraintBottom_toTopOf="@+id/pbAttempts"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/pbAttempts"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginBottom="32dp"
+        android:progressDrawable="@drawable/custom_progressbar"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <TableLayout
+        android:id="@+id/tableLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/cards"
-        android:layout_marginEnd="@dimen/cards"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="@dimen/cards"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -40,130 +92,205 @@
         app:layout_constraintStart_toStartOf="parent">
         <!--Row 0-->
         <TableRow
-            android:layout_marginTop="5dip"
-            android:layout_marginBottom="5dip">
+            android:layout_marginTop="10dip"
+            android:layout_marginBottom="10dip">
 
-            <ImageView
-                android:id="@+id/ivc00"
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="@dimen/width_memory"
                 android:layout_height="@dimen/height_memory"
-                android:layout_marginStart="2.5dp"
-                android:layout_marginEnd="2.5dp"
-                android:layout_weight="1"
-                android:src="@drawable/outline_question_mark_black_24dp" />
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1">
 
-            <ImageView
-                android:id="@+id/ivc01"
+                <ImageView
+                    android:id="@+id/ivc00"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/app_name"
+                    android:padding="@dimen/dim_5sp" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="@dimen/width_memory"
                 android:layout_height="@dimen/height_memory"
-                android:layout_marginStart="2.5dp"
-                android:layout_marginEnd="2.5dp"
-                android:layout_weight="1"
-                android:src="@drawable/outline_question_mark_black_24dp" />
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1">
 
-            <ImageView
-                android:id="@+id/ivc02"
+                <ImageView
+                    android:id="@+id/ivc01"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/app_name"
+                    android:padding="@dimen/dim_5sp" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="@dimen/width_memory"
                 android:layout_height="@dimen/height_memory"
-                android:layout_marginStart="2.5dp"
-                android:layout_marginEnd="2.5dp"
-                android:layout_weight="1"
-                android:src="@drawable/outline_question_mark_black_24dp" />
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1">
 
-            <ImageView
-                android:id="@+id/ivc03"
-                android:layout_width="@dimen/width_memory"
-                android:layout_height="@dimen/height_memory"
-                android:layout_marginStart="2.5dp"
-                android:layout_marginEnd="2.5dp"
-                android:layout_weight="1"
-                android:src="@drawable/outline_question_mark_black_24dp" />
-
+                <ImageView
+                    android:id="@+id/ivc02"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/app_name"
+                    android:padding="@dimen/dim_5sp" />
+            </com.google.android.material.card.MaterialCardView>
         </TableRow>
         <!--Row 1-->
         <TableRow
-            android:layout_marginTop="5dip"
-            android:layout_marginBottom="5dip">
+            android:layout_marginTop="10dip"
+            android:layout_marginBottom="10dip">
 
-            <ImageView
-                android:id="@+id/ivc10"
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="@dimen/width_memory"
                 android:layout_height="@dimen/height_memory"
-                android:layout_marginStart="2.5dp"
-                android:layout_marginEnd="2.5dp"
-                android:layout_weight="1"
-                android:src="@drawable/outline_question_mark_black_24dp" />
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1">
 
-            <ImageView
-                android:id="@+id/ivc11"
+                <ImageView
+                    android:id="@+id/ivc10"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/app_name"
+                    android:padding="@dimen/dim_5sp" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="@dimen/width_memory"
                 android:layout_height="@dimen/height_memory"
-                android:layout_marginStart="2.5dp"
-                android:layout_marginEnd="2.5dp"
-                android:layout_weight="1"
-                android:src="@drawable/outline_question_mark_black_24dp" />
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1">
 
-            <ImageView
-                android:id="@+id/ivc12"
+                <ImageView
+                    android:id="@+id/ivc11"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/app_name"
+                    android:padding="@dimen/dim_5sp" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="@dimen/width_memory"
                 android:layout_height="@dimen/height_memory"
-                android:layout_marginStart="2.5dp"
-                android:layout_marginEnd="2.5dp"
-                android:layout_weight="1"
-                android:src="@drawable/outline_question_mark_black_24dp" />
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1">
 
-            <ImageView
-                android:id="@+id/ivc13"
-                android:layout_width="@dimen/width_memory"
-                android:layout_height="@dimen/height_memory"
-                android:layout_marginStart="2.5dp"
-                android:layout_marginEnd="2.5dp"
-                android:layout_weight="1"
-                android:src="@drawable/outline_question_mark_black_24dp" />
-
+                <ImageView
+                    android:id="@+id/ivc12"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/app_name"
+                    android:padding="@dimen/dim_5sp" />
+            </com.google.android.material.card.MaterialCardView>
         </TableRow>
         <!--Row 2-->
         <TableRow
-            android:layout_marginTop="5dip"
-            android:layout_marginBottom="5dip">
+            android:layout_marginTop="10dip"
+            android:layout_marginBottom="10dip">
 
-            <ImageView
-                android:id="@+id/ivc20"
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="@dimen/width_memory"
                 android:layout_height="@dimen/height_memory"
-                android:layout_marginStart="2.5dp"
-                android:layout_marginEnd="2.5dp"
-                android:layout_weight="1"
-                android:src="@drawable/outline_question_mark_black_24dp" />
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1">
 
-            <ImageView
-                android:id="@+id/ivc21"
+                <ImageView
+                    android:id="@+id/ivc20"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/app_name"
+                    android:padding="@dimen/dim_5sp" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="@dimen/width_memory"
                 android:layout_height="@dimen/height_memory"
-                android:layout_marginStart="2.5dp"
-                android:layout_marginEnd="2.5dp"
-                android:layout_weight="1"
-                android:src="@drawable/outline_question_mark_black_24dp" />
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1">
 
-            <ImageView
-                android:id="@+id/ivc22"
+                <ImageView
+                    android:id="@+id/ivc21"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/app_name"
+                    android:padding="@dimen/dim_5sp" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="@dimen/width_memory"
                 android:layout_height="@dimen/height_memory"
-                android:layout_marginStart="2.5dp"
-                android:layout_marginEnd="2.5dp"
-                android:layout_weight="1"
-                android:src="@drawable/outline_question_mark_black_24dp" />
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1">
 
-            <ImageView
-                android:id="@+id/ivc23"
-                android:layout_width="@dimen/width_memory"
-                android:layout_height="@dimen/height_memory"
-                android:layout_marginStart="2.5dp"
-                android:layout_marginEnd="2.5dp"
-                android:layout_weight="1"
-                android:src="@drawable/outline_question_mark_black_24dp" />
-
+                <ImageView
+                    android:id="@+id/ivc22"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/app_name"
+                    android:padding="@dimen/dim_5sp" />
+            </com.google.android.material.card.MaterialCardView>
         </TableRow>
+        <!--Row 3-->
+        <TableRow
+            android:layout_marginTop="10dip"
+            android:layout_marginBottom="10dip">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="@dimen/width_memory"
+                android:layout_height="@dimen/height_memory"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/ivc30"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/app_name"
+                    android:padding="@dimen/dim_5sp" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="@dimen/width_memory"
+                android:layout_height="@dimen/height_memory"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/ivc31"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/app_name"
+                    android:padding="@dimen/dim_5sp" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="@dimen/width_memory"
+                android:layout_height="@dimen/height_memory"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/ivc32"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/app_name"
+                    android:padding="@dimen/dim_5sp" />
+            </com.google.android.material.card.MaterialCardView>
+        </TableRow>
+
     </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

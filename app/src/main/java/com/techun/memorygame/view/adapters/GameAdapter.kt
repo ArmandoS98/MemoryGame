@@ -3,12 +3,13 @@ package com.techun.memorygame.view.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.techun.memorygame.view.MemoryItem
+import com.techun.memorygame.data.CardItem
+import com.techun.memorygame.data.GameItem
 import com.techun.memorygame.databinding.ItemGameBinding
 import com.techun.memorygame.data.utils.extensions.loadByResource
 
 class GameAdapter(
-    private var boardList: List<MemoryItem>,
+    private var boardList: ArrayList<GameItem>,
     private val onItemSelected: OnItemSelected? = null
 ) : RecyclerView.Adapter<GameAdapter.BoardViewHolder>() {
 
@@ -28,20 +29,19 @@ class GameAdapter(
 
     override fun getItemCount() = boardList.size
 
-    inner class BoardViewHolder(
-        val binding: ItemGameBinding,
+    inner class BoardViewHolder(val binding: ItemGameBinding,
         private val onItemSelected: OnItemSelected? = null
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(card: MemoryItem) = with(binding.root) {
-            binding.imgPreview.loadByResource(card.urlImagen)
-            binding.tvTitleGame.text = card.name
+        fun bind(card: GameItem) = with(binding.root) {
+            binding.imgPreview.loadByResource(card.cover!!)
+            binding.tvTitleGame.text = card.title
             binding.imgPreview.setOnClickListener {
-                onItemSelected?.onClickListener(card)
+                onItemSelected?.onClickListener(card.cards)
             }
         }
     }
 
     interface OnItemSelected {
-        fun onClickListener(card: MemoryItem)
+        fun onClickListener(card: MutableList<CardItem>?)
     }
 }

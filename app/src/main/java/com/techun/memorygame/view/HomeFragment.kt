@@ -1,24 +1,28 @@
 package com.techun.memorygame.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.firebase.firestore.FirebaseFirestore
 import com.techun.memorygame.R
+import com.techun.memorygame.data.CardItem
+import com.techun.memorygame.data.GameItem
 import com.techun.memorygame.databinding.FragmentHomeBinding
 import com.techun.memorygame.view.adapters.GameAdapter
 
 class HomeFragment : Fragment(), GameAdapter.OnItemSelected {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    val TAG = "HOLIS"
 
-    private lateinit var gamesResently: List<MemoryItem>
     private lateinit var adapter: GameAdapter
+    val rootRef = FirebaseFirestore.getInstance()
+    val usersRef = rootRef.collection("Games")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,44 +38,33 @@ class HomeFragment : Fragment(), GameAdapter.OnItemSelected {
     }
 
     private fun recyclerInit() {
-        gamesResently = listOf(
-            MemoryItem(
-                true,
-                "ben 10",
-                "https://static.wikia.nocookie.net/doblaje/images/5/50/Ben_10.jpg/revision/latest?cb=20220313003855&path-prefix=es"
-            ),
-            MemoryItem(
-                true,
-                "Generador Rex",
-                "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTkiyNdMrR-QK0h66kugnUDX6hQ9QPtkbsKECzniWKs8KoSebnT"
-            ),
-            MemoryItem(
-                true,
-                "Isla Del Drama",
-                "https://static.wikia.nocookie.net/doblaje/images/4/44/TotalDramaIsland.jpg/revision/latest?cb=20210211195004&path-prefix=es"
-            ),
-            MemoryItem(
-                true,
-                "los padrinos magicos",
-                "https://static.wikia.nocookie.net/doblaje/images/6/68/Padrinos_m%C3%A1gicos.jpg/revision/latest?cb=20200906215022&path-prefix=es"
-            ), MemoryItem(
-                true,
-                "bob esponja",
-                "https://static.wikia.nocookie.net/doblaje/images/4/45/Poster-Bob-Esponja.jpg/revision/latest?cb=20171125060321&path-prefix=es"
-            ),
-            MemoryItem(
-                true,
-                "Gravity falls",
-                "https://static.wikia.nocookie.net/doblaje/images/6/60/Gravity_Falls_Poster.jpg/revision/latest?cb=20200703192506&path-prefix=es"
-            )
-        )
+        usersRef.get().addOnSuccessListener { result ->
+            val gamesResently = ArrayList<GameItem>()
+            for (document in result) {
+                val temp = document.toObject(GameItem::class.java)
+                gamesResently.add(temp)
+            }
 
-        adapter = GameAdapter(gamesResently.shuffled(), this)
-        binding.rvMemory.layoutManager = GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
-        binding.rvMemory.adapter = adapter
+            adapter = GameAdapter(gamesResently, this)
+            binding.rvMemory.layoutManager =
+                GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
+            binding.rvMemory.adapter = adapter
+        }.addOnFailureListener { exception ->
+            Log.w(TAG, "Error getting documents.", exception)
+        }
     }
 
-    override fun onClickListener(card: MemoryItem) {
-        findNavController().navigate(R.id.action_homeFragment_to_nav_game)
+    override fun onClickListener(card: MutableList<CardItem>?) {
+        val newCards = ArrayList<CardItem>()
+        for (c in card!!) {
+            for (i in 0..1) {
+                newCards.add(c)
+            }
+        }
+        val bundle = Bundle()
+        bundle.putParcelableArray(getString(R.string.id_cards), newCards.toTypedArray())
+        findNavController().navigate(R.id.action_homeFragment_to_nav_game, bundle)
     }
 }
+
+

@@ -7,7 +7,7 @@ import com.techun.memorygame.R
 fun ImageView.loadByResource(resource: String) =
     Glide.with(this)
         .load(resource)
-        .centerInside()
+        .centerCrop()
         .placeholder(R.drawable.ic_launcher_foreground)
         .error(R.drawable.ic_launcher_foreground)
         .fallback(R.drawable.ic_launcher_foreground)

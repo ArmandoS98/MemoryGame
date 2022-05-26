@@ -9,4 +9,14 @@
     <string name="you_have_15_attempts_to_match_all_the_characters">You have 15 attempts to match\nall the Characters</string>
     <string name="attempts">Attempts</string>
     <string name="score">0/15</string>
+    <string name="attempts_counter">%1$d/15</string>
+    <string name="title">Winner</string>
+    <string name="supporting_text">You finished the game</string>
+    <string name="accept">Accept</string>
+    <string name="try_again">Try again</string>
+    <string name="cancel">Cancel</string>
+    <string name="supporting_text_game_over">We have run out of attempts\ndo you want to try again?</string>
+    <string name="title_game_over">OOOPS!</string>
+    <string name="id_cards">cards</string>
+
 </resources>

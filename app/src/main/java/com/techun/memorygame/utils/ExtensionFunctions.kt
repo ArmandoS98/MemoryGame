@@ -1,4 +1,4 @@
-package com.techun.memorygame.data.utils.extensions
+package com.techun.memorygame.utils
 
 import android.widget.ImageView
 import com.bumptech.glide.Glide

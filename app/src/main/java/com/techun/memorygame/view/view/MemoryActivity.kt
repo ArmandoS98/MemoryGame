@@ -1,4 +1,4 @@
-package com.techun.memorygame.view
+package com.techun.memorygame.view.view
 
 import android.os.Bundle
 import android.os.Handler
@@ -7,13 +7,15 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.techun.memorygame.R
-import com.techun.memorygame.data.CardItem
-import com.techun.memorygame.data.utils.extensions.loadByResource
+import com.techun.memorygame.domain.model.CardModel
+import com.techun.memorygame.utils.loadByResource
 import com.techun.memorygame.databinding.ActivityMemoryBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MemoryActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityMemoryBinding
-    private lateinit var information: List<CardItem>
+    private lateinit var information: List<CardModel>
     private lateinit var cards: List<ImageView>
     private var firstCard: Int? = null
     private var secondCard: Int? = null
@@ -52,7 +54,7 @@ class MemoryActivity : AppCompatActivity(), View.OnClickListener {
         )
 
         val temp = intent.getParcelableArrayExtra(getString(R.string.id_cards))
-        information = temp!!.map { c -> c as CardItem }.shuffled()
+        information = temp!!.map { c -> c as CardModel }.shuffled()
 
         cards.forEachIndexed { index, card ->
             card.isEnabled = true

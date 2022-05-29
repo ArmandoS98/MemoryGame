@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_recently"
-        android:name="com.techun.memorygame.view.HomeFragment"
+        android:name="com.techun.memorygame.view.view.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home">
         <action
@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/nav_create"
-        android:name="com.techun.memorygame.view.CreateFragment"
+        android:name="com.techun.memorygame.view.view.CreateFragment"
         android:label="Create"
         tools:layout="@layout/fragment_create">
         <action
@@ -32,7 +32,7 @@
 
     <fragment
         android:id="@+id/nav_all_games"
-        android:name="com.techun.memorygame.view.AllGamesFragment"
+        android:name="com.techun.memorygame.view.view.AllGamesFragment"
         android:label="All Games"
         tools:layout="@layout/fragment_all_games">
         <action
@@ -46,7 +46,7 @@
 
     <activity
         android:id="@+id/nav_game"
-        android:name="com.techun.memorygame.view.MemoryActivity"
+        android:name="com.techun.memorygame.view.view.MemoryActivity"
         android:label="activity_memory"
         tools:layout="@layout/activity_memory" />
 </navigation>

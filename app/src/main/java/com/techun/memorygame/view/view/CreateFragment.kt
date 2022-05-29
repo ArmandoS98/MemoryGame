@@ -1,16 +1,15 @@
-package com.techun.memorygame.view
+package com.techun.memorygame.view.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.firebase.firestore.FirebaseFirestore
 import com.techun.memorygame.R
-import com.techun.memorygame.data.CardItem
-import com.techun.memorygame.data.GameItem
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CreateFragment : Fragment() {
 
     val TAG = "HOLIS"

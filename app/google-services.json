@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "158192813248-se3oldod00m2voacvpfgc23dgvukqi0t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.techun.memorygame",
+            "certificate_hash": "325ed6d2faa4e4e6d3f70abcacb48699342fc5bd"
+          }
+        },
+        {
           "client_id": "158192813248-07kc2b86h3avjpbd4gmjrael5ctmkin3.apps.googleusercontent.com",
           "client_type": 3
         }

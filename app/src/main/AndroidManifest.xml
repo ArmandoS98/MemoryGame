@@ -13,10 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MemoryGame">
         <activity
-            android:name=".view.view.MemoryActivity"
-            android:exported="false" />
+            android:name=".ui.view.MemoryActivity"
+            android:exported="true" />
         <activity
-            android:name=".view.view.MainActivity"
+            android:name=".ui.view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,6 +24,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.view.ForgotPasswordActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.view.LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.view.RegisterActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

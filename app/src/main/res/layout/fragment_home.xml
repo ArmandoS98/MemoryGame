@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.view.HomeFragment">
+    tools:context=".ui.view.HomeFragment">
 
     <TextView
         android:id="@+id/tvHeader"
@@ -29,7 +29,7 @@
         app:layout_constraintTop_toTopOf="parent" />-->
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvMemory"
+        android:id="@+id/rvFavoriteGames"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/dim_16sp"

@@ -1,4 +1,4 @@
-package com.techun.memorygame.view.view
+package com.techun.memorygame.ui.view
 
 import android.os.Bundle
 import android.os.Handler

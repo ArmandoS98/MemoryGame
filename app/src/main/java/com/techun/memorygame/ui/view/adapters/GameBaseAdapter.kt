@@ -1,4 +1,4 @@
-package com.techun.memorygame.view.view.adapters
+package com.techun.memorygame.ui.view.adapters
 
 import android.view.LayoutInflater
 import android.view.View

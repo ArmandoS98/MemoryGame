@@ -1,4 +1,4 @@
-package com.techun.memorygame.view.view
+package com.techun.memorygame.ui.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,17 +10,17 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.techun.memorygame.R
-import com.techun.memorygame.databinding.FragmentHomeBinding
+import com.techun.memorygame.databinding.FragmentAllGamesBinding
 import com.techun.memorygame.domain.model.CardModel
-import com.techun.memorygame.utils.DataStates
-import com.techun.memorygame.view.view.adapters.GameAdapter
-import com.techun.memorygame.view.viewmodel.GamesViewModel
+import com.techun.memorygame.utils.DataState
+import com.techun.memorygame.ui.view.adapters.GameAdapter
+import com.techun.memorygame.ui.viewmodel.GamesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
-    private var _binding: FragmentHomeBinding? = null
+class AllGamesFragment : Fragment() {
+    private var _binding: FragmentAllGamesBinding? = null
     private val binding get() = _binding!!
 
     private val viewModel: GamesViewModel by viewModels()
@@ -31,8 +31,8 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+    ): View? {
+        _binding = FragmentAllGamesBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -54,7 +54,7 @@ class HomeFragment : Fragment() {
             }
             val bundle = Bundle()
             bundle.putParcelableArray(getString(R.string.id_cards), newCards.toTypedArray())
-            findNavController().navigate(R.id.action_homeFragment_to_nav_game, bundle)
+            findNavController().navigate(R.id.action_nav_all_games_to_nav_game, bundle)
         }
 
         gameAdapter.setDeleteClickListener {
@@ -65,10 +65,10 @@ class HomeFragment : Fragment() {
     private fun initObservers() {
         viewModel.getGameState.observe(viewLifecycleOwner) { dataState ->
             when (dataState) {
-                is DataStates.Success -> {
+                is DataState.Success -> {
                     gameAdapter.submitList(dataState.data)
                 }
-                is DataStates.Error -> {
+                is DataState.Error -> {
                     Toast.makeText(
                         requireContext(),
                         "Ooops, algo salio mal, intanta de nuevo",
@@ -89,5 +89,3 @@ class HomeFragment : Fragment() {
         layoutManager = GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
     }
 }
-
-

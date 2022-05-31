@@ -78,6 +78,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
                     else {
                         binding.tvNothing.visibility = VISIBLE
                         binding.lavNothing.visibility = VISIBLE
+                        binding.tvCleckHereForMoreGames.visibility = VISIBLE
                     }
                 }
                 is DataState.Error -> {

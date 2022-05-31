@@ -19,4 +19,6 @@ interface AuthRepository {
     suspend fun saveUser(user: UserModel): Flow<DataState<Boolean>>
 
     suspend fun userExist(documentId: String): Flow<DataState<Boolean>>
+
+    suspend fun verifyPasswordReset(email:String): Flow<DataState<Boolean>>
 }

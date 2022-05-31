@@ -12,7 +12,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object GamesModule {
-
     @Provides
     @Singleton
     fun provideGamesRepository(@FirebaseModule.GamesCollection gamesCollection: CollectionReference): GamesRepository =

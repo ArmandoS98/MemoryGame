@@ -2,9 +2,11 @@ package com.techun.memorygame.ui.view
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.techun.memorygame.R
 import com.techun.memorygame.databinding.ActivityRegisterBinding
 import com.techun.memorygame.domain.model.UserModel
@@ -42,6 +44,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                     viewModel.existUser(user.id)
                 }
                 is DataState.Error -> {
+                    progressbar(GONE)
                     manageRegisterErrorMessages(dataState.exception)
                 }
                 is DataState.Loading -> {
@@ -54,9 +57,11 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         viewModel.saveUserState.observe(this) { dataState ->
             when (dataState) {
                 is DataState.Success -> {
+                    progressbar(GONE)
                     goToActivity<LoginActivity>()
                 }
                 is DataState.Error -> {
+                    progressbar(GONE)
                     manageLoginErrorMessages(dataState.exception)
                 }
                 else -> Unit
@@ -69,6 +74,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                     val result = dataState.data
                     if (result) {
                         //Usuario Existe
+                        progressbar(GONE)
                         goToActivity<LoginActivity>()
                     } else {
                         //Usurio no Existe
@@ -76,6 +82,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                     }
                 }
                 is DataState.Error -> {
+                    progressbar(GONE)
                     manageLoginErrorMessages(dataState.exception)
                 }
                 else -> Unit
@@ -93,7 +100,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                 toast(getString(R.string.login__error_wrong_password))
             }
             else -> {
-                toast(getString(R.string.login__error_unknown_error))
+                toast(getString(R.string.msg_something_went_wrong))
             }
         }
     }
@@ -102,17 +109,31 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         when (v?.id) {
             R.id.btnmContinue -> {
                 if (isUserDataOk()) {
+                    progressbar(VISIBLE)
                     viewModel.signUp(createUser(), binding.tieUserPassword.text.toString())
                 }
             }
             R.id.tvTermConditions -> {
-                Toast.makeText(this, "Show terms and conditions", Toast.LENGTH_LONG).show()
+                MaterialAlertDialogBuilder(this)
+                    .setTitle(getString(R.string.termi_conditions))
+                    .setMessage(getString(R.string.terms))
+                    .setNegativeButton(resources.getString(R.string.cancel)) { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                    .setPositiveButton(resources.getString(R.string.accept)) { dialog, _ ->
+                        dialog.dismiss()
+                    }.show()
             }
             R.id.tvPrivacyPolicy -> {
-                Toast.makeText(this, "Show Privacy Policy", Toast.LENGTH_LONG).show()
+                MaterialAlertDialogBuilder(this)
+                    .setTitle(getString(R.string.privacy_policy))
+                    .setMessage(getString(R.string.privacy))
+                    .setPositiveButton(resources.getString(R.string.accept)) { dialog, _ ->
+                        dialog.dismiss()
+                    }.show()
             }
             R.id.tvLogin -> {
-                goToActivity<LoginActivity>()
+                goToActivity<LoginActivity>(finish = true)
             }
         }
     }
@@ -152,8 +173,11 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         if (exception.toString() == EMAIL_ALREADY_EXISTS) {
             toast(getString(R.string.signup__error_email_already_registered))
         } else {
-            toast(getString(R.string.signup__error_unknown_error))
+            toast(getString(R.string.msg_error_getting_user_data))
         }
     }
 
+    private fun progressbar(status: Int) {
+        binding.fragmentProgressBar.visibility = status
+    }
 }

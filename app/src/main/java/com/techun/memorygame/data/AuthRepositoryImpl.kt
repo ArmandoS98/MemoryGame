@@ -10,8 +10,10 @@ import com.google.firebase.firestore.SetOptions
 import com.techun.memorygame.di.FirebaseModule
 import com.techun.memorygame.domain.model.UserModel
 import com.techun.memorygame.domain.repository.AuthRepository
+import com.techun.memorygame.utils.Constants.IMAGE_USER_DEFAULT
 import com.techun.memorygame.utils.Constants.INFO_NOT_SET
 import com.techun.memorygame.utils.Constants.USER_LOGGED_IN_ID
+import com.techun.memorygame.utils.Constants.USER_NAME
 import com.techun.memorygame.utils.DataState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -51,7 +53,9 @@ class AuthRepositoryImpl @Inject constructor(
                         val firebaseUser: FirebaseUser = task.user!!
                         registeredUser = UserModel(
                             id = firebaseUser.uid,
-                            email = firebaseUser.email!!
+                            email = firebaseUser.email!!,
+                            imageUrl = firebaseUser.photoUrl.toString(),
+                            userName = firebaseUser.displayName!!
                         )
                     } else {
                         exception = Exception("N/A")
@@ -125,10 +129,11 @@ class AuthRepositoryImpl @Inject constructor(
                         val user = document.toObject(UserModel::class.java)!!
                         requestStatus = true
                         USER_LOGGED_IN_ID = user.id
+                        USER_NAME = user.userName
+                        IMAGE_USER_DEFAULT = user.imageUrl
                     }
                     .addOnFailureListener { requestStatus = false }.await()
             }
-
             emit(DataState.Success(requestStatus))
             emit(DataState.Finished)
         } catch (e: Exception) {
@@ -166,6 +171,19 @@ class AuthRepositoryImpl @Inject constructor(
                 .addOnFailureListener {
                     uploadSuccessful = false
                 }.await()
+            emit(DataState.Success(uploadSuccessful))
+            emit(DataState.Finished)
+        } catch (e: Exception) {
+            emit(DataState.Error(e))
+            emit(DataState.Finished)
+        }
+    }
+
+    override suspend fun verifyPasswordReset(email: String): Flow<DataState<Boolean>> = flow {
+        emit(DataState.Loading)
+        try {
+            val uploadSuccessful = true
+            auth.sendPasswordResetEmail(email).await()
             emit(DataState.Success(uploadSuccessful))
             emit(DataState.Finished)
         } catch (e: Exception) {

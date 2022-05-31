@@ -8,6 +8,7 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.techun.memorygame.R
 import com.techun.memorygame.utils.Constants.GAMES_COLLECTIONS
+import com.techun.memorygame.utils.Constants.RECENTLY_COLLECTIONS
 import com.techun.memorygame.utils.Constants.USERS_COLLECTIONS
 import dagger.Module
 import dagger.Provides
@@ -52,12 +53,20 @@ object FirebaseModule {
     @UsersCollection
     @Provides
     @Singleton
-    fun provideUserCollection(db: FirebaseFirestore): CollectionReference {
-        return db.collection(USERS_COLLECTIONS)
-    }
+    fun provideUserCollection(db: FirebaseFirestore) = db.collection(USERS_COLLECTIONS)
+
+    @RecentlyGamesCollection
+    @Provides
+    @Singleton
+    fun provideRGCollection(db: FirebaseFirestore) = db.collection(RECENTLY_COLLECTIONS)
 
     @Qualifier
     @Retention(AnnotationRetention.BINARY)
     annotation class GamesCollection
+    @Qualifier
+    @Retention(AnnotationRetention.BINARY)
     annotation class UsersCollection
+    @Qualifier
+    @Retention(AnnotationRetention.BINARY)
+    annotation class RecentlyGamesCollection
 }

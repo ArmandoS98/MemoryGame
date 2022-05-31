@@ -1,25 +1,34 @@
 package com.techun.memorygame.data
 
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.SetOptions
 import com.techun.memorygame.di.FirebaseModule
 import com.techun.memorygame.domain.model.GameModel
-import com.techun.memorygame.domain.repository.GamesRepository
+import com.techun.memorygame.domain.repository.RecentlyRepository
+import com.techun.memorygame.utils.Constants.GAMES_COLLECTIONS
+import com.techun.memorygame.utils.Constants.USER_LOGGED_IN_ID
 import com.techun.memorygame.utils.DataState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
-class GamesRepositoryImpl @Inject constructor(@FirebaseModule.GamesCollection private val gamesCollection: CollectionReference) :
-    GamesRepository {
-    override suspend fun saveGame(game: GameModel): Flow<DataState<Boolean>> = flow {
+class RecentlyRepositoryImpl @Inject constructor
+    (
+    @FirebaseModule.RecentlyGamesCollection
+    private val recentlyGamesCollection: CollectionReference,
+    private val auth : FirebaseAuth
+) : RecentlyRepository {
+    override suspend fun saveLastGame(game: GameModel): Flow<DataState<Boolean>> = flow {
         emit(DataState.Loading)
         try {
             var uploadSuccessful = false
-            val docId: String = gamesCollection.document().id
-            game.id = docId
-            gamesCollection.document(docId).set(game, SetOptions.merge())
+            recentlyGamesCollection
+                .document(auth.uid!!)
+                .collection(GAMES_COLLECTIONS)
+                .document(game.id!!)
+                .set(game, SetOptions.merge())
                 .addOnSuccessListener {
                     uploadSuccessful = true
                 }
@@ -34,10 +43,13 @@ class GamesRepositoryImpl @Inject constructor(@FirebaseModule.GamesCollection pr
         }
     }
 
-    override suspend fun getAllGames(): Flow<DataState<List<GameModel>>> = flow {
+    override suspend fun getAllRecentlyGames(): Flow<DataState<List<GameModel>>> = flow {
         emit(DataState.Loading)
         try {
-            val games = gamesCollection.get().await().toObjects(GameModel::class.java)
+            val games = recentlyGamesCollection
+                .document(auth.uid!!)
+                .collection(GAMES_COLLECTIONS)
+                .get().await().toObjects(GameModel::class.java)
             emit(DataState.Success(games))
             emit(DataState.Finished)
         } catch (e: Exception) {

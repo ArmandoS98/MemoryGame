@@ -3,6 +3,8 @@ package com.techun.memorygame.ui.view
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -47,6 +49,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     viewModel.existUser(user.id)
                 }
                 is DataState.Error -> {
+                    progressbar(GONE)
                     manageLoginErrorMessages(dataState.exception)
                 }
                 else -> Unit
@@ -56,9 +59,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         viewModel.loginState.observe(this) { dataState ->
             when (dataState) {
                 is DataState.Success -> {
-                    goToActivity<MainActivity>()
+                    progressbar(GONE)
+                    goToActivity<MainActivity>(finish = true)
                 }
                 is DataState.Error -> {
+                    progressbar(GONE)
                     manageLoginErrorMessages(dataState.exception)
                 }
                 else -> Unit
@@ -68,9 +73,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         viewModel.saveUserState.observe(this) { dataState ->
             when (dataState) {
                 is DataState.Success -> {
-                    goToActivity<MainActivity>()
+                    progressbar(GONE)
+                    goToActivity<MainActivity>(finish = true)
                 }
                 is DataState.Error -> {
+                    progressbar(GONE)
                     manageLoginErrorMessages(dataState.exception)
                 }
                 else -> Unit
@@ -83,13 +90,15 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     val result = dataState.data
                     if (result) {
                         //Usuario Existe
-                        goToActivity<MainActivity>()
+                        progressbar(GONE)
+                        goToActivity<MainActivity>(finish = true)
                     } else {
                         //Usurio no Existe
                         viewModel.saveUser(user = user)
                     }
                 }
                 is DataState.Error -> {
+                    progressbar(GONE)
                     manageLoginErrorMessages(dataState.exception)
                 }
                 else -> Unit
@@ -106,7 +115,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 toast(getString(R.string.login__error_wrong_password))
             }
             else -> {
-                toast(getString(R.string.login__error_unknown_error))
+                toast(getString(R.string.msg_something_went_wrong))
             }
         }
     }
@@ -122,21 +131,28 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.btnmLogin -> {
+                progressbar(VISIBLE)
                 val email = binding.tieUserEmail.text.toString()
                 val password = binding.tieUserPassword.text.toString()
 
+                progressbar(VISIBLE)
                 viewModel.login(email, password)
             }
             R.id.btnmLoginGoogle -> {
+                progressbar(VISIBLE)
                 signIn()
             }
             R.id.tvRegister -> {
-                goToActivity<RegisterActivity>()
+                goToActivity<RegisterActivity>(finish = true)
             }
             R.id.tvForgotPassword -> {
                 goToActivity<ForgotPasswordActivity>()
             }
         }
+    }
+
+    private fun progressbar(status: Int) {
+        binding.fragmentProgressBar.visibility = status
     }
 
 
@@ -157,6 +173,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun signIn() {
         val signInIntent: Intent = googleSignInClient.signInIntent
+        googleSignInClient.signOut()
         startActivityForResult(signInIntent, GOOGLE_SIGN_IN)
     }
 }

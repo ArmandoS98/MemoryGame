@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.google.android.material.textfield.TextInputEditText
 import com.techun.memorygame.R
 import com.techun.memorygame.utils.Constants.VALUE_REQUIRED
+import de.hdodenhof.circleimageview.CircleImageView
 
 fun ImageView.loadByResource(resource: String) =
     Glide.with(this)
@@ -28,12 +29,26 @@ fun ImageView.loadByResource(resource: Int) =
         .fallback(R.drawable.ic_launcher_foreground)
         .into(this)
 
-inline fun <reified T : Activity> Activity.goToActivity(noinline init: Intent.() -> Unit = {}) {
+fun CircleImageView.loadByResource(resource: String) =
+    Glide.with(this)
+        .load(resource)
+        .centerInside()
+        .placeholder(R.drawable.ic_launcher_foreground)
+        .error(R.drawable.ic_launcher_foreground)
+        .fallback(R.drawable.ic_launcher_foreground)
+        .into(this)
+
+inline fun <reified T : Activity> Activity.goToActivity(
+    noinline init: Intent.() -> Unit = {},
+    finish: Boolean = false
+) {
     val intent = Intent(this, T::class.java)
     intent.init()
     startActivity(intent)
-    finish()
+    if (finish)
+        finish()
 }
+
 
 fun Activity.toast(text: String, length: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(this, text, length).show()

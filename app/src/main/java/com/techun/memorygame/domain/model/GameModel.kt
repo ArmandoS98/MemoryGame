@@ -6,7 +6,7 @@ import java.util.*
 
 @Parcelize
 data class GameModel(
-    val id: String = UUID.randomUUID().toString(),
+    var id: String? = null,
     val title: String? = null,
     val cover: String? = null,
     val about: String? = null,

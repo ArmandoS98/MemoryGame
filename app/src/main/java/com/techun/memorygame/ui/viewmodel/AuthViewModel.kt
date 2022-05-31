@@ -10,6 +10,7 @@ import com.techun.memorygame.domain.usecases.auth.google.LoginWithGoogleUseCase
 import com.techun.memorygame.domain.usecases.auth.login.GetUserDataUseCase
 import com.techun.memorygame.domain.usecases.auth.login.LoginUseCase
 import com.techun.memorygame.domain.usecases.auth.logout.LogOutUseCase
+import com.techun.memorygame.domain.usecases.auth.passwordReset.SendPasswordResetEmailUseCase
 import com.techun.memorygame.domain.usecases.auth.signup.ExistUserUseCase
 import com.techun.memorygame.domain.usecases.auth.signup.SaveUserUseCase
 import com.techun.memorygame.domain.usecases.auth.signup.SignUpUseCase
@@ -28,7 +29,8 @@ class AuthViewModel @Inject constructor(
     private val logOutUseCase: LogOutUseCase,
     private val saveUserUseCase: SaveUserUseCase,
     private val userExistUserUseCase: ExistUserUseCase,
-    private val signUpUseCase: SignUpUseCase
+    private val signUpUseCase: SignUpUseCase,
+    private val resetPassword: SendPasswordResetEmailUseCase
 ) : ViewModel() {
 
     private val _loginState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
@@ -59,6 +61,10 @@ class AuthViewModel @Inject constructor(
     val signUpState: LiveData<DataState<UserModel>>
         get() = _signUpState
 
+    private val _resetPasswordState: MutableLiveData<DataState<Boolean>> = MutableLiveData()
+    val resetPasswordState: LiveData<DataState<Boolean>>
+        get() = _resetPasswordState
+
     fun login(email: String, password: String) {
         viewModelScope.launch {
             loginUseCase(email, password)
@@ -76,13 +82,11 @@ class AuthViewModel @Inject constructor(
             }.launchIn(viewModelScope)
     }
 
-    fun getUserData() {
-        viewModelScope.launch {
-            getUserDataUseCase()
-                .onEach { dataState ->
-                    _userDataState.value = dataState
-                }.launchIn(viewModelScope)
-        }
+    fun getUserData() = viewModelScope.launch {
+        getUserDataUseCase()
+            .onEach { dataState ->
+                _userDataState.value = dataState
+            }.launchIn(viewModelScope)
     }
 
     fun logOut() {
@@ -119,5 +123,12 @@ class AuthViewModel @Inject constructor(
                     _signUpState.value = dataState
                 }.launchIn(viewModelScope)
         }
+    }
+
+    fun resetPasswordByEmail(email: String) = viewModelScope.launch {
+        resetPassword(email)
+            .onEach { dataState ->
+                _resetPasswordState.value = dataState
+            }.launchIn(viewModelScope)
     }
 }

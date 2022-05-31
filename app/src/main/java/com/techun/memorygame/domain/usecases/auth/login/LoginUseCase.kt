@@ -1,7 +1,5 @@
 package com.techun.memorygame.domain.usecases.auth.login
 
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.techun.memorygame.domain.model.UserModel
 import com.techun.memorygame.domain.repository.AuthRepository
 import com.techun.memorygame.utils.DataState
 import kotlinx.coroutines.flow.Flow

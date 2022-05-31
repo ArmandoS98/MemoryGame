@@ -3,8 +3,9 @@ package com.techun.memorygame.ui.view
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -12,9 +13,11 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.techun.memorygame.R
 import com.techun.memorygame.databinding.FragmentHomeBinding
 import com.techun.memorygame.domain.model.CardModel
-import com.techun.memorygame.utils.DataState
 import com.techun.memorygame.ui.view.adapters.GameAdapter
 import com.techun.memorygame.ui.viewmodel.GamesViewModel
+import com.techun.memorygame.ui.viewmodel.RecentlyGamesViewModel
+import com.techun.memorygame.utils.DataState
+import com.techun.memorygame.utils.toast
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -23,7 +26,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: GamesViewModel by viewModels()
+    private val recentlyViewModel: RecentlyGamesViewModel by viewModels()
 
     @Inject
     lateinit var gameAdapter: GameAdapter
@@ -63,17 +66,15 @@ class HomeFragment : Fragment() {
     }
 
     private fun initObservers() {
-        viewModel.getGameState.observe(viewLifecycleOwner) { dataState ->
+        recentlyViewModel.getGameState.observe(viewLifecycleOwner) { dataState ->
             when (dataState) {
                 is DataState.Success -> {
+                    progressbar(GONE)
                     gameAdapter.submitList(dataState.data)
                 }
                 is DataState.Error -> {
-                    Toast.makeText(
-                        requireContext(),
-                        "Ooops, algo salio mal, intanta de nuevo",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    progressbar(GONE)
+                    requireActivity().toast(getString(R.string.msg_something_went_wrong))
                 }
                 else -> Unit
             }
@@ -81,13 +82,19 @@ class HomeFragment : Fragment() {
     }
 
     private fun init() {
-        viewModel.getAllGames()
+        progressbar(VISIBLE)
+        recentlyViewModel.getAllGames()
     }
 
     private fun recyclerInit() = binding.rvFavoriteGames.apply {
         adapter = gameAdapter
         layoutManager = GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
     }
+
+    private fun progressbar(status: Int) {
+        binding.fragmentProgressBar.visibility = status
+    }
+
 }
 
 

@@ -1,6 +1,6 @@
 # MemoryGame
 
-![CoffeePests](https://raw.githubusercontent.com/ArmandoS98/AIProyectCoffeePests/develop/screenshots/banner.png)
+![CoffeePests](https://raw.githubusercontent.com/ArmandoS98/MemoryGame/master/screenshots/Previews.png)
 
 App #5 del App Monthly Challenge 2022 de MoureDev
 ¿Quién no ha jugado alguna vez a las parejas de cartas? Desde bien pequeños hasta alguna noche de fiesta, ¿cierto? Bien, para este reto deberás elegir tu temática favorita y recrear el [famoso juego](https://es.wikipedia.org/wiki/Memoria_(juego)). Sorpréndenos! 😉

@@ -15,27 +15,27 @@ fun ImageView.loadByResource(resource: String) =
     Glide.with(this)
         .load(resource)
         .centerCrop()
-        .placeholder(R.drawable.ic_launcher_foreground)
-        .error(R.drawable.ic_launcher_foreground)
-        .fallback(R.drawable.ic_launcher_foreground)
+        .placeholder(R.drawable.mgame)
+        .error(R.drawable.mgame)
+        .fallback(R.drawable.mgame)
         .into(this)
 
 fun ImageView.loadByResource(resource: Int) =
     Glide.with(this)
         .load(resource)
         .centerInside()
-        .placeholder(R.drawable.ic_launcher_foreground)
-        .error(R.drawable.ic_launcher_foreground)
-        .fallback(R.drawable.ic_launcher_foreground)
+        .placeholder(R.drawable.mgame)
+        .error(R.drawable.mgame)
+        .fallback(R.drawable.mgame)
         .into(this)
 
 fun CircleImageView.loadByResource(resource: String) =
     Glide.with(this)
         .load(resource)
         .centerInside()
-        .placeholder(R.drawable.ic_launcher_foreground)
-        .error(R.drawable.ic_launcher_foreground)
-        .fallback(R.drawable.ic_launcher_foreground)
+        .placeholder(R.drawable.mgame)
+        .error(R.drawable.mgame)
+        .fallback(R.drawable.mgame)
         .into(this)
 
 inline fun <reified T : Activity> Activity.goToActivity(

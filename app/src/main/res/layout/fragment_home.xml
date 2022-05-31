@@ -30,6 +30,48 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvHeader" />
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lavNothing"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/nothing"
+        app:lottie_speed="1" />
+
+    <TextView
+        android:id="@+id/tvNothing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:fontFamily="@font/prompt"
+        android:text="@string/you_have_not_played_recently"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHeader" />
+
+
+    <TextView
+        android:id="@+id/tvCleckHereForMoreGames"
+        style="@style/Theme.MemoryGame.Textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/prompt"
+        android:text="@string/click_here_for_more_games"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNothing" />
+
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentProgressBar"
         android:name="com.techun.memorygame.ui.customprogressbar.ProgressBarFragment"

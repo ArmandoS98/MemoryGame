@@ -131,7 +131,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.btnmLogin -> {
-                progressbar(VISIBLE)
                 val email = binding.tieUserEmail.text.toString()
                 val password = binding.tieUserPassword.text.toString()
 
@@ -166,6 +165,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 viewModel.loginWithGoogle(account!!)
             } catch (e: ApiException) {
                 val error = e.message
+                progressbar(GONE)
                 toast(error.let { it ?: "unknow" })
             }
         }

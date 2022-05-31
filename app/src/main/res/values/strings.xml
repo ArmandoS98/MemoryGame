@@ -57,4 +57,6 @@
     <string name="privacy">Show Privacy Policy</string>
     <string name="msg_error_getting_user_data">An error occurred while obtaining user information.</string>
     <string name="msg_something_went_wrong">Ooops, something went wrong, try again.</string>
+    <string name="you_have_not_played_recently">You have not played recently</string>
+    <string name="click_here_for_more_games">Click here for more games</string>
 </resources>

@@ -58,4 +58,6 @@
     <string name="privacy">Mostrar la política de privacidad</string>
     <string name="msg_error_getting_user_data">Se ha producido un error al obtener la información del usuario.</string>
     <string name="msg_something_went_wrong">Ooops, algo salió mal, inténtalo de nuevo.</string>
+    <string name="you_have_not_played_recently">No has jugado nada recientemente</string>
+    <string name="click_here_for_more_games">Clic aquí para ver más juegos</string>
 </resources>

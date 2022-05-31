@@ -22,7 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), View.OnClickListener {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
@@ -63,6 +63,8 @@ class HomeFragment : Fragment() {
         gameAdapter.setDeleteClickListener {
 
         }
+
+        binding.tvCleckHereForMoreGames.setOnClickListener(this)
     }
 
     private fun initObservers() {
@@ -70,7 +72,13 @@ class HomeFragment : Fragment() {
             when (dataState) {
                 is DataState.Success -> {
                     progressbar(GONE)
-                    gameAdapter.submitList(dataState.data)
+                    val recentlyGames = dataState.data
+                    if (recentlyGames.isNotEmpty())
+                        gameAdapter.submitList(dataState.data)
+                    else {
+                        binding.tvNothing.visibility = VISIBLE
+                        binding.lavNothing.visibility = VISIBLE
+                    }
                 }
                 is DataState.Error -> {
                     progressbar(GONE)
@@ -93,6 +101,14 @@ class HomeFragment : Fragment() {
 
     private fun progressbar(status: Int) {
         binding.fragmentProgressBar.visibility = status
+    }
+
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.tvCleckHereForMoreGames -> {
+                findNavController().navigate(R.id.action_nav_recently_to_nav_all_games)
+            }
+        }
     }
 
 }

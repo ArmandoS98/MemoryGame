@@ -4,12 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidStudioProjects/MemoryGame/app/src/main/res/drawable/bg_gradient.xml" value="0.217" />
+        <entry key="..\:/AndroidStudioProjects/MemoryGame/app/src/main/res/drawable/bg_gradient_day.xml" value="0.252" />
+        <entry key="..\:/AndroidStudioProjects/MemoryGame/app/src/main/res/drawable/bg_gradient_night.xml" value="0.252" />
         <entry key="..\:/AndroidStudioProjects/MemoryGame/app/src/main/res/drawable/custom_progressbar.xml" value="0.252" />
         <entry key="..\:/AndroidStudioProjects/MemoryGame/app/src/main/res/drawable/ic_create_black_24dp.xml" value="0.217" />
         <entry key="..\:/AndroidStudioProjects/MemoryGame/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.217" />
         <entry key="..\:/AndroidStudioProjects/MemoryGame/app/src/main/res/drawable/ic_person.xml" value="0.252" />
         <entry key="..\:/AndroidStudioProjects/MemoryGame/app/src/main/res/drawable/outline_arrow_back_ios_24.xml" value="0.217" />
         <entry key="..\:/AndroidStudioProjects/MemoryGame/app/src/main/res/drawable/person_black.xml" value="0.252" />
+        <entry key="..\:/AndroidStudioProjects/MemoryGame/app/src/main/res/drawable/splash_background.xml" value="0.252" />
+        <entry key="..\:/AndroidStudioProjects/MemoryGame/app/src/main/res/drawable/splash_background_night.xml" value="0.252" />
         <entry key="..\:/AndroidStudioProjects/MemoryGame/app/src/main/res/drawable/top_action_bar_scrim.xml" value="0.217" />
         <entry key="..\:/AndroidStudioProjects/MemoryGame/app/src/main/res/font/prompt.xml" value="0.39076923076923076" />
         <entry key="..\:/AndroidStudioProjects/MemoryGame/app/src/main/res/font/prompt_medium.xml" value="0.39076923076923076" />
@@ -29,6 +33,8 @@
         <entry key="..\:/AndroidStudioProjects/MemoryGame/app/src/main/res/layout/item_game.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidStudioProjects/MemoryGame/app/src/main/res/layout/progress_bar_fragment.xml" value="0.3009833262077811" />
         <entry key="..\:/AndroidStudioProjects/MemoryGame/app/src/main/res/menu/bottom_nav_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/MemoryGame/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.252" />
+        <entry key="..\:/AndroidStudioProjects/MemoryGame/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.252" />
       </map>
     </option>
   </component>

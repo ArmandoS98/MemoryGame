@@ -33,4 +33,11 @@
     <style name="Theme.MemoryGame.Textview" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/md_theme_light_primary</item>
     </style>
+
+    <!--FullSplasScreen-->
+    <style name="Theme.MemoryGame.FullSplasScreen" parent="Theme.MemoryGame">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:statusBarColor">@color/white</item>
+    </style>
 </resources>
